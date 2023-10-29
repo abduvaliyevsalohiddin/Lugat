@@ -19,7 +19,14 @@
         <div class="wrapp">
             <div class="left" id="left">
                     <br>
+
+                    {% if togri == "x" %}
+                <h1 align="center"> So’z omborda yo’q  </h1>
+                    {% else %}
                 <h1 align="center"> {{togri.soz}} &#9989 </h1>
+
+                    {% endif %}
+
                     <br>
             </div>
             <div class="right" id="right">

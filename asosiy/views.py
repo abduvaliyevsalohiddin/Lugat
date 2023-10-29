@@ -5,14 +5,19 @@ from .models import *
 def home(request):
     qidirish_sozi = request.GET.get("searched")
     togrisi = Togri.objects.filter(soz=qidirish_sozi)
-    if togrisi:
-        t = togrisi[0]
-        n = Notogri.objects.filter(t_soz=t)
-    else:
-        n = Notogri.objects.filter(soz=qidirish_sozi)
-        if n:
-            t = n[0].t_soz
+    no = Notogri.objects.filter(soz=qidirish_sozi)
+    if togrisi or no:
+        if togrisi:
+            t = togrisi[0]
             n = Notogri.objects.filter(t_soz=t)
+        else:
+            n = Notogri.objects.filter(soz=qidirish_sozi)
+            if n:
+                t = n[0].t_soz
+                n = Notogri.objects.filter(t_soz=t)
+    else:
+        t = "x"
+        n = ["x"]
 
     content = {
         "togri": t,
